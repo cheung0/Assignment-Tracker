@@ -27,11 +27,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		  // Circle shape = constructCircle();
-		  // shape.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> shape.setFill(Color.BLUE));
-		  // shape.addEventHandler(MouseEvent.MOUSE_EXITED, e -> shape.setFill(Color.RED));
-		  
-		  
+		  // create the nodes
 		  BorderPane root = new BorderPane();
 		  ToolBar toolbar = constructToolBar();
 		  HBox hbox = constructHBox(primaryStage);
@@ -41,8 +37,6 @@ public class Main extends Application {
 		  BorderPane.setAlignment(toolbar, Pos.CENTER);
 		  BorderPane.setAlignment(hbox, Pos.CENTER);
 		  
-		  
-				  
 		  Scene scene = new Scene(root,600,600);
 		  primaryStage.setScene(scene);
 		  primaryStage.show();
@@ -52,9 +46,10 @@ public class Main extends Application {
 	}
 	
 	
+	// makes the tool bar
 	private ToolBar constructToolBar() {
 		Label project = new Label("ASSIGNMENT TRACKER");
-
+		
 		Button sort = new Button("sort by dates");
 		
 		ToolBar toolbar = new ToolBar(project, sort);
@@ -62,14 +57,16 @@ public class Main extends Application {
 		return toolbar;
 	}
 
-
+	
+	// makes the horizontal box 
+	// there are three v boxes, one for todo, one for doing, and one for done
 	private HBox constructHBox(Stage primaryStage) {
-		// leave the buttons alone, ask Michael 
-		// because the buttons don't show up if it's just a single button
+		// leave the buttons alone
 		Button addTask1 = new Button("+");
 		Button addTask2 = new Button("+");
 		Button addTask3 = new Button("+");
 		
+		// makes another window popup after clicking the first plus button
 	    addTask1.setOnAction(
 	        new EventHandler<ActionEvent>() {
 	            @Override
@@ -78,13 +75,14 @@ public class Main extends Application {
 	                dialog.initModality(Modality.APPLICATION_MODAL);
 	                dialog.initOwner(primaryStage);
 	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("This is a Dialog"));
+	                dialogVbox.getChildren().add(new Label("Add Assignment"));
 	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }
 	         });
 	    
+		// makes another window popup after clicking the second plus button
 	    addTask2.setOnAction(
 	        new EventHandler<ActionEvent>() {
 	            @Override
@@ -93,13 +91,14 @@ public class Main extends Application {
 	                dialog.initModality(Modality.APPLICATION_MODAL);
 	                dialog.initOwner(primaryStage);
 	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("This is a Dialog"));
+	                dialogVbox.getChildren().add(new Label("Add Assignment"));
 	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }
 	         });
 	    
+		// makes another window popup after clicking the third plus button
 	    addTask3.setOnAction(
 	        new EventHandler<ActionEvent>() {
 	            @Override
@@ -108,14 +107,13 @@ public class Main extends Application {
 	                dialog.initModality(Modality.APPLICATION_MODAL);
 	                dialog.initOwner(primaryStage);
 	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("This is a Dialog"));
+	                dialogVbox.getChildren().add(new Label("Add Assignment"));
 	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }
 	         });
-
-
+	    
 	    VBox vbox1 = new VBox(10); // spacing = 8
 	    vbox1.getChildren().addAll(new HBox(new Label("TODO     "), addTask1), new Label("code todo list"), new Label("do history homework"));
 	    
@@ -133,20 +131,8 @@ public class Main extends Application {
 
         HBox hbox = new HBox(vbox1, region1, vbox2, region2, vbox3);
 
-	    
 		return hbox;
 	}
-
-
-	private Circle constructCircle() {
-    Circle shape = new Circle();
-    shape.setCenterX(200);
-    shape.setCenterY(150);
-    shape.setRadius(100);
-    shape.setFill(Color.RED);
-    shape.setCursor(Cursor.HAND);
-    return shape;
-  }
 	
 	
   public static void main(String[] args) {

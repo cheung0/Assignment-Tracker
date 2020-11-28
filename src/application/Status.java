@@ -2,12 +2,15 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,12 +29,33 @@ public class Status {
 		EventHandler handler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                final Stage dialog = new Stage();
+            	final Stage dialog = new Stage();
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 dialog.initOwner(primaryStage);
-                VBox dialogVbox = new VBox(20);
-                dialogVbox.getChildren().add(new Label("Add Assignment"));
-                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                VBox dialogVbox = new VBox(40);
+              
+                Button button = new Button("Add Task");
+                VBox vBox = new VBox();
+                
+                vBox.setSpacing(10);
+                vBox.setPadding(new Insets(10,10,10,10));
+                vBox.getChildren().addAll(
+                        new Label("Your Task"),
+                        new TextField(),
+                        new Label("Your Due Date"),
+                        new TextField(),
+                        button);
+                dialogVbox.getChildren().addAll(vBox);
+
+                button.setOnAction(actionEvent-> {
+                    Stage stage = new Stage();
+                    StackPane stackPane = new StackPane();
+                    stage.setScene(new Scene(stackPane, 200,200));
+                    stage.show();
+                });
+                
+
+                Scene dialogScene = new Scene(dialogVbox, 400, 400);
                 dialog.setScene(dialogScene);
                 dialog.show();
             }

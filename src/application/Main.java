@@ -3,18 +3,22 @@ package application;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -67,6 +71,7 @@ public class Main extends Application {
 		Button addTask3 = new Button("+");
 		
 		// makes another window popup after clicking the first plus button
+	    // after clicking the "Add Task" button, the form's content will be added to the home page
 	    addTask1.setOnAction(
 	        new EventHandler<ActionEvent>() {
 	            @Override
@@ -74,15 +79,37 @@ public class Main extends Application {
 	                final Stage dialog = new Stage();
 	                dialog.initModality(Modality.APPLICATION_MODAL);
 	                dialog.initOwner(primaryStage);
-	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("Add Assignment"));
-	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+	                VBox dialogVbox = new VBox(40);
+	              
+	                Button button = new Button("Add Task");
+	                VBox vBox = new VBox();
+	                
+	                vBox.setSpacing(10);
+	                vBox.setPadding(new Insets(10,10,10,10));
+	                vBox.getChildren().addAll(
+	                        new Label("Your Task"),
+	                        new TextField(),
+	                        new Label("Your Due Date"),
+	                        new TextField(),
+	                        button);
+	                dialogVbox.getChildren().addAll(vBox);
+
+	                button.setOnAction(actionEvent-> {
+	                    Stage stage = new Stage();
+	                    StackPane stackPane = new StackPane();
+	                    stage.setScene(new Scene(stackPane, 200,200));
+	                    stage.show();
+	                });
+	                
+
+	                Scene dialogScene = new Scene(dialogVbox, 400, 400);
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }
 	         });
 	    
-		// makes another window popup after clicking the second plus button
+		// makes the add task form pop up after clicking the second plus button
+	    // after clicking the "Add Task" button, the form's content will be added to the home page
 	    addTask2.setOnAction(
 	        new EventHandler<ActionEvent>() {
 	            @Override
@@ -90,15 +117,37 @@ public class Main extends Application {
 	                final Stage dialog = new Stage();
 	                dialog.initModality(Modality.APPLICATION_MODAL);
 	                dialog.initOwner(primaryStage);
-	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("Add Assignment"));
-	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+	                VBox dialogVbox = new VBox(40);
+	              
+	                Button button = new Button("Add Task");
+	                VBox vBox = new VBox();
+	                
+	                vBox.setSpacing(10);
+	                vBox.setPadding(new Insets(10,10,10,10));
+	                vBox.getChildren().addAll(
+	                        new Label("Your Task"),
+	                        new TextField(),
+	                        new Label("Your Due Date"),
+	                        new TextField(),
+	                        button);
+	                dialogVbox.getChildren().addAll(vBox);
+
+	                button.setOnAction(actionEvent-> {
+	                    Stage stage = new Stage();
+	                    StackPane stackPane = new StackPane();
+	                    stage.setScene(new Scene(stackPane, 200,200));
+	                    stage.show();
+	                });
+	                
+
+	                Scene dialogScene = new Scene(dialogVbox, 400, 400);
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }
 	         });
 	    
 		// makes another window popup after clicking the third plus button
+	    // after clicking the "Add Task" button, the form's content will be added to the home page
 	    addTask3.setOnAction(
 	        new EventHandler<ActionEvent>() {
 	            @Override
@@ -106,9 +155,30 @@ public class Main extends Application {
 	                final Stage dialog = new Stage();
 	                dialog.initModality(Modality.APPLICATION_MODAL);
 	                dialog.initOwner(primaryStage);
-	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("Add Assignment"));
-	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+	                VBox dialogVbox = new VBox(40);
+	              
+	                Button button = new Button("Add Task");
+	                VBox vBox = new VBox();
+	                
+	                vBox.setSpacing(10);
+	                vBox.setPadding(new Insets(10,10,10,10));
+	                vBox.getChildren().addAll(
+	                        new Label("Your Task"),
+	                        new TextField(),
+	                        new Label("Your Due Date"),
+	                        new TextField(),
+	                        button);
+	                dialogVbox.getChildren().addAll(vBox);
+
+	                button.setOnAction(actionEvent-> {
+	                    Stage stage = new Stage();
+	                    StackPane stackPane = new StackPane();
+	                    stage.setScene(new Scene(stackPane, 200,200));
+	                    stage.show();
+	                });
+	                
+
+	                Scene dialogScene = new Scene(dialogVbox, 400, 400);
 	                dialog.setScene(dialogScene);
 	                dialog.show();
 	            }

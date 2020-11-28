@@ -45,7 +45,6 @@ public class Main extends Application {
 		}
 	}
 	
-	
 	// makes the tool bar
 	private ToolBar constructToolBar() {
 		Label project = new Label("ASSIGNMENT TRACKER");
@@ -57,7 +56,6 @@ public class Main extends Application {
 		return toolbar;
 	}
 
-	
 	// makes the horizontal box 
 	// there are three v boxes, one for todo, one for doing, and one for done
 	private HBox constructHBox(Stage primaryStage) {
@@ -66,53 +64,29 @@ public class Main extends Application {
 		Button addTask2 = new Button("+");
 		Button addTask3 = new Button("+");
 		
+		// Define an event handler
+		EventHandler handler = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                final Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.initOwner(primaryStage);
+                VBox dialogVbox = new VBox(20);
+                dialogVbox.getChildren().add(new Label("Add Assignment"));
+                Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                dialog.setScene(dialogScene);
+                dialog.show();
+            }
+         };
+		
 		// makes another window popup after clicking the first plus button
-	    addTask1.setOnAction(
-	        new EventHandler<ActionEvent>() {
-	            @Override
-	            public void handle(ActionEvent event) {
-	                final Stage dialog = new Stage();
-	                dialog.initModality(Modality.APPLICATION_MODAL);
-	                dialog.initOwner(primaryStage);
-	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("Add Assignment"));
-	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
-	                dialog.setScene(dialogScene);
-	                dialog.show();
-	            }
-	         });
+	    addTask1.setOnAction(handler);
 	    
 		// makes another window popup after clicking the second plus button
-	    addTask2.setOnAction(
-	        new EventHandler<ActionEvent>() {
-	            @Override
-	            public void handle(ActionEvent event) {
-	                final Stage dialog = new Stage();
-	                dialog.initModality(Modality.APPLICATION_MODAL);
-	                dialog.initOwner(primaryStage);
-	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("Add Assignment"));
-	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
-	                dialog.setScene(dialogScene);
-	                dialog.show();
-	            }
-	         });
+	    addTask2.setOnAction(handler);
 	    
 		// makes another window popup after clicking the third plus button
-	    addTask3.setOnAction(
-	        new EventHandler<ActionEvent>() {
-	            @Override
-	            public void handle(ActionEvent event) {
-	                final Stage dialog = new Stage();
-	                dialog.initModality(Modality.APPLICATION_MODAL);
-	                dialog.initOwner(primaryStage);
-	                VBox dialogVbox = new VBox(20);
-	                dialogVbox.getChildren().add(new Label("Add Assignment"));
-	                Scene dialogScene = new Scene(dialogVbox, 300, 200);
-	                dialog.setScene(dialogScene);
-	                dialog.show();
-	            }
-	         });
+	    addTask3.setOnAction(handler);
 	    
 	    VBox vbox1 = new VBox(10); // spacing = 8
 	    vbox1.getChildren().addAll(new HBox(new Label("TODO     "), addTask1), new Label("code todo list"), new Label("do history homework"));

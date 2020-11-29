@@ -38,16 +38,20 @@ public class Main extends Application {
 		  HBox hb = htb.constructTopBar();
 		  
 		  Status s = new Status();
-		  HBox statusBox = s.constructStatus(primaryStage);
+		  HBox statusBox = s.constructStatus();
 		  
 		  root.setTop(hb);
 		  root.setCenter(statusBox);
 		  //BorderPane.setAlignment(hb, Pos.CENTER);
 		  BorderPane.setAlignment(statusBox, Pos.CENTER);
 		  
-		  Scene scene = new Scene(root,600,600);
-		  primaryStage.setScene(scene);
+		  Scene homepage = new Scene(root,600,600);
+		  
+		  // homepage is the first scene 
+		  primaryStage.setScene(homepage);
+		  
 		  primaryStage.show();
+		  
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

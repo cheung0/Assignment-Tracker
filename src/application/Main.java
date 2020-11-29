@@ -31,15 +31,18 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-		  // create the nodes
+		  
 		  BorderPane root = new BorderPane();
-		  ToolBar toolbar = constructToolBar();
+		  
+		  HomeToolBar htb = new HomeToolBar();
+		  HBox hb = htb.constructTopBar();
+		  
 		  Status s = new Status();
 		  HBox statusBox = s.constructStatus(primaryStage);
 		  
-		  root.setTop(toolbar);
+		  root.setTop(hb);
 		  root.setCenter(statusBox);
-		  BorderPane.setAlignment(toolbar, Pos.CENTER);
+		  //BorderPane.setAlignment(hb, Pos.CENTER);
 		  BorderPane.setAlignment(statusBox, Pos.CENTER);
 		  
 		  Scene scene = new Scene(root,600,600);
@@ -49,18 +52,6 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	// makes the tool bar
-	private ToolBar constructToolBar() {
-		Label project = new Label("ASSIGNMENT TRACKER");
-		
-		Button sort = new Button("sort by dates");
-		
-		ToolBar toolbar = new ToolBar(project, sort);
-		
-		return toolbar;
-	}
-
 	
   public static void main(String[] args) {
 		launch(args);

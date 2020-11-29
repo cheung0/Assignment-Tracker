@@ -32,30 +32,11 @@ public class Status {
             	final Stage dialog = new Stage();
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 dialog.initOwner(primaryStage);
-                VBox dialogVbox = new VBox(40);
+                
+                Task t = new Task(); 
+                VBox taskPopUp = t.constructTask();
               
-                Button button = new Button("Add Task");
-                VBox vBox = new VBox();
-                
-                vBox.setSpacing(10);
-                vBox.setPadding(new Insets(10,10,10,10));
-                vBox.getChildren().addAll(
-                        new Label("Your Task"),
-                        new TextField(),
-                        new Label("Your Due Date"),
-                        new TextField(),
-                        button);
-                dialogVbox.getChildren().addAll(vBox);
-
-                button.setOnAction(actionEvent-> {
-                    Stage stage = new Stage();
-                    StackPane stackPane = new StackPane();
-                    stage.setScene(new Scene(stackPane, 200,200));
-                    stage.show();
-                });
-                
-
-                Scene dialogScene = new Scene(dialogVbox, 400, 400);
+                Scene dialogScene = new Scene(taskPopUp, 400, 400);
                 dialog.setScene(dialogScene);
                 dialog.show();
             }
@@ -63,11 +44,9 @@ public class Status {
 		
 		// makes another window popup after clicking the first plus button
 	    addTask1.setOnAction(handler);
-	    
-		// makes another window popup after clicking the second plus button
+	   
 	    addTask2.setOnAction(handler);
 	    
-		// makes another window popup after clicking the third plus button
 	    addTask3.setOnAction(handler);
 	    
 	    VBox vbox1 = new VBox(10); // spacing = 8

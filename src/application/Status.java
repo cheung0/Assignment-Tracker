@@ -1,5 +1,11 @@
 package application;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -61,17 +67,21 @@ public class Status {
                 "-fx-border-style: solid;\n";
 		
 		HBox botLabel = new HBox();
-		Button add = new Button("Add Task"); 
+		Button add = new Button("Add"); 
 
 		
-		Task t = new Task();
+		TaskWindow t = new TaskWindow();
 		EventHandler addHandler = t.addTaskClicked(base.getId());
 	
 		add.setOnAction(addHandler); 
 		
-		Button delete = new Button("Delete Task");
+		Button delete = new Button("Delete");
 		
 		delete.setOnAction(e -> deleteButtonClicked(base.getId()));
+		
+		Button sort = new Button("Sort");
+		
+		//sort.setOnAction(e -> sort());
 		
 		botLabel.setAlignment(Pos.CENTER);
 		
@@ -79,11 +89,11 @@ public class Status {
 		delete.setMaxWidth(Double.MAX_VALUE);
 		
 		botLabel.setSpacing(10);
-		botLabel.getChildren().addAll(add,delete);
+		botLabel.getChildren().addAll(add,delete, sort);
 		
 		// list 
 		TaskList tl = new TaskList();
-		ListView<String> lvList = tl.constructList();
+		ListView<Task> lvList = tl.constructList();
 	
 		base.setTop(topLabel);
 		base.setCenter(lvList);
@@ -107,7 +117,7 @@ public class Status {
 
 	public void deleteButtonClicked(String id) {
 		BorderPane bp = getBorderPane(id);
-		ListView<String> lvList = (ListView<String>) bp.getChildren().get(1);
+		ListView<Task> lvList = (ListView<Task>) bp.getChildren().get(1);
 		
 		// get id of selected item to delete 
 		int selectedID = lvList.getSelectionModel().getSelectedIndex();
@@ -115,6 +125,15 @@ public class Status {
 		// remove the item from the correct list 
 		lvList.getItems().remove(selectedID);
 		
+	}
+	
+	// unfinished
+	public void sortButtonClicked(String id) {
+		BorderPane bp = getBorderPane(id);
+		ListView<Task> lvList = (ListView<Task>) bp.getChildren().get(1);
+		
+		
+		//lvList.getItems().sort(comparator);
 	}
 	
 }

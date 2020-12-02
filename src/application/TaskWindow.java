@@ -36,10 +36,10 @@ public class TaskWindow {
         save = new Button("Save");
         VBox vBox = new VBox();
         
-        Label taskLabel = new Label("Task:");
-        taskTextField = new TextField();
         Label subjectLabel = new Label("Subject:");
         subjectTextField = new TextField();
+        Label taskLabel = new Label("Task:");
+        taskTextField = new TextField();
         Label descriptionLabel = new Label("Description: ");
         descriptionTextField = new TextField();
         Label dueDateLabel = new Label("Due Date:");

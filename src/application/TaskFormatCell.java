@@ -2,6 +2,7 @@ package application;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -9,6 +10,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class TaskFormatCell extends ListCell<Task> {
+	
+	String task;
+	String subject;
+	String description;
+	LocalDate date;
+	
+	public String getTask() {
+		return task;
+	}
+	
+	public void setTask(String task) {
+		this.task = task;
+	}
 	
 	public TaskFormatCell() { }
 	
@@ -29,10 +43,11 @@ public class TaskFormatCell extends ListCell<Task> {
 			Label subject = new Label("Subject:" + item.getSubject());
 			Label description = new Label("Description: " +item.getDescription());
 			LocalDate date = item.getDate();//For reference
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-			Label formattedDate = new Label("Due: " + date.format(formatter));
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MM dd yyyy");
+			String formattedDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date);
+			Label dateLabel = new Label("Due: " + formattedDate);
 			
-			taskInfo.getChildren().addAll(task,subject,description,formattedDate);
+			taskInfo.getChildren().addAll(task,subject,description,dateLabel);
 			setGraphic(taskInfo);
 		}
 	

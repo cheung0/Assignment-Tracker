@@ -81,7 +81,7 @@ public class Status {
 		
 		Button sort = new Button("Sort");
 		
-		//sort.setOnAction(e -> sort());
+		sort.setOnAction(e -> sortButtonClicked(base.getId()));
 		
 		botLabel.setAlignment(Pos.CENTER);
 		
@@ -127,13 +127,11 @@ public class Status {
 		
 	}
 	
-	// unfinished
+
 	public void sortButtonClicked(String id) {
 		BorderPane bp = getBorderPane(id);
 		ListView<Task> lvList = (ListView<Task>) bp.getChildren().get(1);
-		
-		
-		//lvList.getItems().sort(comparator);
+		lvList.getItems().sort(new SortbyDate());
 	}
 	
 }

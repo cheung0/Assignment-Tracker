@@ -2,10 +2,13 @@ package application;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 import javafx.scene.control.Label;
 
 public class Task {
+	
+	public static Task TASKCLIPBOARD;
 	
 	private String name;
 	private String subject;
@@ -18,8 +21,6 @@ public class Task {
 		setDescription(description);
 		setDate(date);
 	}
-	
-	// can add sort that impelemnt Comparator<Task> 
 	
 	
 	public void setName(String name) {

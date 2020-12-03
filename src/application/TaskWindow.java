@@ -1,13 +1,9 @@
 package application;
 
 import java.time.LocalDate;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -15,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -24,24 +19,22 @@ import javafx.stage.Stage;
 public class TaskWindow {
 	
 	TextField taskTextField;
-	TextField subjectTextField;
 	TextField descriptionTextField;
 	
 	DatePicker calendar;
 	Button save;
 	
 	public VBox constructTask(String parentID) {
-		VBox taskDialog = new VBox(40);
-        
+		VBox taskDialog = new VBox();
+	        
         save = new Button("Save");
         VBox vBox = new VBox();
         
-        Label subjectLabel = new Label("Subject:");
-        subjectTextField = new TextField();
         Label taskLabel = new Label("Task:");
         taskTextField = new TextField();
         Label descriptionLabel = new Label("Description: ");
         descriptionTextField = new TextField();
+        descriptionTextField.setPrefSize(50, 50);
         Label dueDateLabel = new Label("Due Date:");
         
         TilePane tilePane = new TilePane();
@@ -52,7 +45,7 @@ public class TaskWindow {
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10,10,10,10));
         vBox.getChildren().addAll(
-                taskLabel, taskTextField, subjectLabel, subjectTextField, 
+                taskLabel, taskTextField, 
                 descriptionLabel, descriptionTextField, dueDateLabel, tilePane, save);
         taskDialog.getChildren().add(vBox);
         
@@ -65,7 +58,6 @@ public class TaskWindow {
 	
 		// gets text from input
 		String task = taskTextField.getText();
-		String subject = subjectTextField.getText();
 		String description = descriptionTextField.getText();
 		LocalDate date = calendar.getValue();
 		
@@ -74,7 +66,7 @@ public class TaskWindow {
 		System.out.println(date);
 
 		
-		Task newTask = new Task(task, subject, description, date);
+		Task newTask = new Task(task, description, date);
 		
 		// access list from column in which save was clicked 
 		BorderPane bp = Status.getBorderPane(parentID);

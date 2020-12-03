@@ -10,15 +10,6 @@ import javafx.scene.text.Font;
 
 public class HomeToolBar {
 	
-	public ToolBar constructToolBar() {
-		Label project = new Label("ASSIGNMENT TRACKER");
-		Button sort = new Button("sort by dates");
-		
-		ToolBar toolbar = new ToolBar(project, sort);
-		
-		return toolbar;
-	}
-	
 	public HBox constructTopBar() {
 		HBox hb = new HBox(); 
 		

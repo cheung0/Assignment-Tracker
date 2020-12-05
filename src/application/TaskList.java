@@ -5,26 +5,49 @@ import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class TaskList {
 	
-	ListView<Task> lvList;
-	ObservableList<Task> items;
-	ListView<Task> sourceList;
-	int selectedID;
+	private ListView<Task> lvList;
+	private ObservableList<Task> items;
+	private ListView<Task> sourceList;
+	private int selectedID;
 	
 	public ListView constructList() {
 		lvList = new ListView<Task>();
-		items = FXCollections.observableArrayList();
+		
+		// sample tasks 
+		LocalDate d1 = LocalDate.of(2020, 01, 01);
+		LocalDate d2 = LocalDate.of(2020, 03, 01);
+		LocalDate d3= LocalDate.of(2020, 02, 01);
+
+		Task t1 = new Task("Task 1", "Lorem Ipsum" , d1);
+		Task t2 = new Task("Task 2", "Lorem Ipsum", d2);
+		Task t3 = new Task("Task 3", "Lorem Ipsum", d3);
+		
+		items = FXCollections.observableArrayList(t1,t2,t3);
 		lvList.setItems(items);
 		lvList.setMaxHeight(Control.USE_PREF_SIZE);
 		lvList.setEditable(true);
@@ -94,10 +117,19 @@ public class TaskList {
 					event.consume();
 					});
 					
+					taskCell.setOnMouseClicked(e -> {
+						System.out.println("clicked");
+						Task t = taskCell.getItem();
+						System.out.println(t.getName());
+						
+						
+					});
+					
 					return taskCell;
 				}
 			
 			});
+	
 			
 		return lvList;
 	}

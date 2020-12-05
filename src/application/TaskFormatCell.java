@@ -6,7 +6,12 @@ import java.time.format.FormatStyle;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+
+// specialized cell class for Task objects
 
 public class TaskFormatCell extends ListCell<Task> {
 	
@@ -18,17 +23,28 @@ public class TaskFormatCell extends ListCell<Task> {
 		
 		if(empty || item == null) {
 			setGraphic(null);
-			System.out.println("Null Cell");
+			
 		} else {
 			
-			Label task = new Label("Task: " + item.getName());
-			Label description = new Label("Description: " +item.getDescription());
-			LocalDate date = item.getDate();//For reference
+			// cell shows task name, description, and date 
+			
+			Label task = new Label(item.getName());
+			task.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+			
+			Label description = new Label("Description: ");
+			description.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+			Label descriptionText = new Label(item.getDescription());
+			
+			LocalDate date = item.getDate(); 
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MM dd yyyy");
 			String formattedDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(date);
-			Label dateLabel = new Label("Due: " + formattedDate);
+			Label dateLabel = new Label("Due: ");
+			dateLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+			Label dateValue = new Label(formattedDate);
 			
-			taskInfo.getChildren().addAll(task,description,dateLabel);
+			HBox dates = new HBox(dateLabel, dateValue);
+			
+			taskInfo.getChildren().addAll(task,description, descriptionText, dates);
 			setGraphic(taskInfo);
 		}
 	

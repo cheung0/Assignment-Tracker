@@ -24,6 +24,7 @@ public class TaskWindow {
 	DatePicker calendar;
 	Button save;
 	
+	// creates layout of task dialog 
 	public VBox constructTask(String parentID) {
 		VBox taskDialog = new VBox();
 	        
@@ -55,31 +56,35 @@ public class TaskWindow {
 	}
 	
 	public void saveButtonClicked(String parentID) {
-	
-		// gets text from input
-		String task = taskTextField.getText();
-		String description = descriptionTextField.getText();
-		LocalDate date = calendar.getValue();
 		
-		System.out.println(task);
-		System.out.println(description);
-		System.out.println(date);
+		if(taskTextField.getText().isEmpty() || descriptionTextField.getText().isEmpty() || calendar.getValue() == null) 
+		{
+			
+			
+		} else {
+			// gets text from input
+			String task = taskTextField.getText();
+			String description = descriptionTextField.getText();
+			LocalDate date = calendar.getValue();
+			
+			System.out.println(task);
+			System.out.println(description);
+			System.out.println(date);
 
-		
-		Task newTask = new Task(task, description, date);
-		
-		// access list from column in which save was clicked 
-		BorderPane bp = Status.getBorderPane(parentID);
-		ListView<Task> lvList = (ListView<Task>) bp.getChildren().get(1);
-		
-		// add the task to the list
-		lvList.getItems().add(newTask);
-		
-		// close window
-		Stage curr = (Stage) save.getScene().getWindow();
-		curr.close();
-		
-		
+			
+			Task newTask = new Task(task, description, date);
+			
+			// access list from column in which save was clicked 
+			BorderPane bp = Status.getBorderPane(parentID);
+			ListView<Task> lvList = (ListView<Task>) bp.getChildren().get(1);
+			
+			// add the task to the list
+			lvList.getItems().add(newTask);
+			
+			// close window
+			Stage curr = (Stage) save.getScene().getWindow();
+			curr.close();
+		}
 	}
 
 	public EventHandler addTaskClicked(String parentID) {

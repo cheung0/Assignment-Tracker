@@ -5,27 +5,14 @@ import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Control;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class TaskList {
@@ -53,10 +40,7 @@ public class TaskList {
 		lvList.setEditable(true);
 	
 		lvList.setCellFactory(new Callback<ListView<Task>, ListCell<Task>>() {
-			
-			// can place nay Node in Cell graphic property 
-			// will be bound to cells item property 
-			// implement cellFactory callback function to specialize Cell
+			// implemented cellFactory callback function to specialize Cell
 						
 			@Override 
 			public ListCell<Task> call(ListView<Task> list) {
@@ -64,7 +48,6 @@ public class TaskList {
 				TaskFormatCell taskCell = new TaskFormatCell();
 				
 				taskCell.setOnDragDetected((MouseEvent event) -> {
-					System.out.println("set on drag detected");
 					Dragboard db = taskCell.startDragAndDrop(TransferMode.MOVE);
 				
 					String taskName = taskCell.getItem().getName();
@@ -83,30 +66,26 @@ public class TaskList {
 					// removes the item from source list 
 					selectedID = lvList.getSelectionModel().getSelectedIndex();
 					lvList.getItems().remove(selectedID);
-					});
+				});
 					
-					taskCell.setOnDragExited((DragEvent event) -> {
-					System.out.println("set on drag exited");
-					});
+				taskCell.setOnDragExited((DragEvent event) -> {
+					
+				});
 				
-					taskCell.setOnDragOver((DragEvent event) -> {
+				taskCell.setOnDragOver((DragEvent event) -> {
 					Dragboard db = event.getDragboard();
 					if( db.hasString()) {
-						System.out.println("set on drag over: " + db.hasString());
 						event.acceptTransferModes(TransferMode.MOVE);
 					}
 					event.consume();
-					});
+				});
 					
-					taskCell.setOnDragDropped((DragEvent event) -> {
-					System.out.println("set on drag dropped");
+				taskCell.setOnDragDropped((DragEvent event) -> {
 					Dragboard db = event.getDragboard();
 					
 					boolean success = false;
 					
 					if(db.hasString()) {
-						System.out.println("dropped " + db.getString());
-						System.out.println("dropped " + Task.TASKCLIPBOARD.getName());
 						
 						// adds item to list
 						lvList.getItems().add(Task.TASKCLIPBOARD);
@@ -115,21 +94,13 @@ public class TaskList {
 					}
 					event.setDropCompleted(success);
 					event.consume();
-					});
+				});
 					
-					taskCell.setOnMouseClicked(e -> {
-						System.out.println("clicked");
-						Task t = taskCell.getItem();
-						System.out.println(t.getName());
-						
-						
-					});
-					
-					return taskCell;
+				return taskCell;
+				
 				}
 			
 			});
-	
 			
 		return lvList;
 	}

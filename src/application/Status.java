@@ -60,9 +60,8 @@ public class Status {
 		// creates and organizes buttons 
 		HBox botLabel = new HBox();
 		Button add = new Button("Add"); 
-		
-		TaskWindow t = new TaskWindow();
-		EventHandler addHandler = t.addTaskClicked(base.getId());
+	
+		EventHandler addHandler = addTaskClicked(base.getId());
 	
 		add.setOnAction(addHandler); 
 		
@@ -132,6 +131,29 @@ public class Status {
 		lvList.getItems().sort(new SortbyDate());
 	}
 	
+	// opens dialog to add new task 
+	public EventHandler addTaskClicked(String parentID) {
+		
+		Stage addTaskStage = new Stage(); 
+		
+		EventHandler handler = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	final Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                dialog.initOwner(addTaskStage);
+               
+                TaskWindow tw = new TaskWindow();
+                VBox taskPopUp = tw.constructTask(parentID);
+              
+                Scene dialogScene = new Scene(taskPopUp, 300, 350);
+                dialog.setScene(dialogScene);
+                dialog.show();
+            }
+         };
+         
+         return handler;
+	}
 }
 
 

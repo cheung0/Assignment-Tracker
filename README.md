@@ -1,4 +1,4 @@
 # Assignment-Tracker
-![alt text](https://github.com/[cheung0]/[Assignment-Tracker]/blob/[main]/homepage.png?raw=true)
+![alt text](https://github.com/[cheung0]/[Assignment-Tracker]/blob/homepage.png?raw=true)
 
 ##

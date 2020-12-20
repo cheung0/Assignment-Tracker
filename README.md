@@ -1,4 +1,4 @@
 # Assignment-Tracker
-![GitHub Logo](/homepage.png)
+![GitHub Logo](/demo.png)
 
 ##

@@ -1,2 +1,2 @@
-# Assignment-Tracker
+## Demo
 ![GitHub Logo](/demo.png)
